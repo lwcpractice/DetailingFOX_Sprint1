@@ -1,0 +1,18 @@
+<apex:page standardController="Customer_Vehicle_Info__C">
+<apex:form>
+    <apex:pageBlock title="Vehicle Information">
+    <apex:pageBlockSection columns="2">
+   <apex:inputField value="{!Customer_Vehicle_Info__C.Name}"/>
+   <apex:inputField value="{!Customer_Vehicle_Info__C.Customer_Name__c}"/>
+   <apex:inputField value="{!Customer_Vehicle_Info__C.Customer_Mobile_Number__c}"/>
+   <apex:inputField value="{!Customer_Vehicle_Info__C.Customer_Mobile_Number__c}"/>
+   <apex:inputField value="{!Customer_Vehicle_Info__C.Customer_Email__c}"/>
+   <apex:inputField value="{!Customer_Vehicle_Info__C.Premise_Name__c}"/>
+   <apex:inputField value="{!Customer_Vehicle_Info__C.Customer_address__c}"/>
+      
+      
+    </apex:pageBlockSection>
+    </apex:pageBlock>
+
+</apex:form>
+</apex:page>

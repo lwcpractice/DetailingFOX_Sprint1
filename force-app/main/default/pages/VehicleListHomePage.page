@@ -1,13 +1,26 @@
-<apex:page standardController="Customer_Vehicle_Info__C" recordSetVar="VehicleInfoList">
+<apex:page standardController="Customer_Vehicle_Info__C"  extensions="CutomerVehicleClass" recordSetVar="VehicleInfo" >
 <apex:form>
-    <apex:pageBlock title="Vehcile List" id="Vehicle_List">
-        <apex:pageBlockTable value="{!VehicleInfoList}" var="Vehicle">
-        <apex:column><apex:outputLink value="/{!Vehicle.Id}">{!Vehicle.Name}</apex:outputLink></apex:column>
+    <apex:pageBlock title="Detailing FOX" id="Vehicle_List">
+        <apex:pageBlockSection title="vehicle search">
+                <apex:inputText value="{!searchKeyword}" /><br/>
+                <apex:commandButton value="Search" action="{!performSearch}" reRender="Vehicle_List" /><br/>
+                <apex:pageBlockTable value="{!VehicleInfoList}" var="Vehicle">
+                    <apex:column  value="{!Vehicle.Name}"/>
+                    <apex:column><apex:commandButton value="view details" action="{!showVehicleDetails}" rerender="Vehicle_List"> 
+                        <apex:param name="vehicleId" value="{!Vehicle.Id}" assignTo="{!selectedVehicleId}"/>
+                </apex:commandButton></apex:column>
+                    </apex:pageBlockTable>
+            </apex:pageBlockSection>
+         
+        <apex:pageBlockTable value="{!VehicleInfo}" var="Vehicle">
+         <apex:column headerValue="Vehicle Number" ><apex:outputLink value="/apex/VehicleDetail?id={!Vehicle.Id}">{!Vehicle.Name}</apex:outputLink></apex:column>
+        
         <apex:column value="{!Vehicle.Customer_Name__C}"/>
         <apex:column value="{!Vehicle.Customer_Mobile_Number__C}"/>
         <apex:column value="{!Vehicle.Premise_Name__c}"/>
-        <apex:column value="{!Vehicle.Vehicle_Type__C}"/>
+        
         </apex:pageBlockTable>
+       
         <!-- Pagination -->
     <table style="width: 100%"><tr>
         <td>
