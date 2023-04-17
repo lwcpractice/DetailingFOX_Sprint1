@@ -10,7 +10,15 @@ public with sharing class CutomerVehicleClass
 
     
     public PageReference showVehicleDetails() {
-        return new PageReference('/apex/VehicleDetail?id=' + selectedVehicleId);
+        if (selectedVehicleId !=null){
+            return new PageReference('/apex/VehicleDetail?id=' + selectedVehicleId);
+        }
+        
+        else {
+            
+                return new PageReference('/apex/VehicleDetail');
+            
+        }
     }
 
     public void performSearch() {

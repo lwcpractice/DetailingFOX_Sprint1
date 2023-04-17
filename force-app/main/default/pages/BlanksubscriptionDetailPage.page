@@ -1,0 +1,33 @@
+<apex:page Controller="BlankSubscriptionDetailPageExtension">
+    <apex:form>
+<br/>
+    <center>
+        <apex:commandButton value="Back" action="{!VehiclepageRedirection}"/>&nbsp;&nbsp;
+        <apex:commandButton value="Got to Hompage" action="{!HomepageRedirection}"/>&nbsp;&nbsp;
+        
+    </center>
+</apex:form><br/>
+    
+    <apex:pageBlock   id="Subscription_Information">
+        <apex:form>
+
+        
+    <apex:pageBlockSection title="Subscription Information " columns="2" id="Subscription_PageBlock">
+   <apex:outputField value="{!Subscription.Name}"/>
+   <apex:inputField value="{!Subscription.subscription_start_date__C}"/>
+   <apex:outputField value="{!Subscription.Subscription_End_Date__c}"/>
+   <apex:inputField value="{!Subscription.Subscription_Type__C}"/>
+   <apex:outputField value="{!Subscription.Subscription_Status__C}"/>
+   <apex:outputField value="{!Subscription.Vehicle_Number__r.Name}"/>
+  
+   </apex:pageBlockSection>
+   <center>
+    <apex:commandButton value="Save" action="{!SaveDetail}" reRender="Subscription_Information"/>&nbsp;&nbsp;
+    <apex:commandButton value="Cancel" action="{!cancelDetail}" rerender="Subscription_Information"/>&nbsp;&nbsp;
+    
+    
+</center>
+</apex:form>
+</apex:pageBlock>
+
+</apex:page>

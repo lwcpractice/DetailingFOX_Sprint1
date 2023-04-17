@@ -1,18 +1,61 @@
-<apex:page standardController="Customer_Vehicle_Info__C">
+<apex:page standardController="Customer_Vehicle_Info__C" extensions="CustomerVehicleInfoExtension">
+    <apex:form>
+<br/>
+    <center>
+        <apex:commandButton value="Got to Hompage" action="{!HomepageRedirection}"/>&nbsp;&nbsp;
+    </center>
+</apex:form><br/>
 <apex:form>
-    <apex:pageBlock title="Vehicle Information">
+    <apex:pageBlock title="Vehicle Information" id="Vehicle_Information">
     <apex:pageBlockSection columns="2">
    <apex:inputField value="{!Customer_Vehicle_Info__C.Name}"/>
+   <apex:inputField value="{!Customer_Vehicle_Info__C.Vehicle_Type__c}"/>
    <apex:inputField value="{!Customer_Vehicle_Info__C.Customer_Name__c}"/>
-   <apex:inputField value="{!Customer_Vehicle_Info__C.Customer_Mobile_Number__c}"/>
    <apex:inputField value="{!Customer_Vehicle_Info__C.Customer_Mobile_Number__c}"/>
    <apex:inputField value="{!Customer_Vehicle_Info__C.Customer_Email__c}"/>
    <apex:inputField value="{!Customer_Vehicle_Info__C.Premise_Name__c}"/>
    <apex:inputField value="{!Customer_Vehicle_Info__C.Customer_address__c}"/>
-      
-      
-    </apex:pageBlockSection>
+   
+   
+   </apex:pageBlockSection>
+</apex:pageBlock>
+
+
+
+
+  <center>
+    <apex:commandButton value="Save" action="{!SaveDetail}" rerender="Vehicle_Information"/>&nbsp;&nbsp;
+    <apex:commandButton value="Cancel" action="{!cancelDetail}" rerender="Vehicle_Information"/>
+    
+</center>
+</apex:form><br/>
+
+
+
+<apex:form>
+    <apex:pageBlock title="Subscription Information" id="Subscription_list">
+        <apex:commandButton value="Add new subscription" action="{!newsubscription}"/><br/><br/> 
+<apex:pageBlockTable value="{!Customer_Vehicle_Info__C.subscriptions__r}" var="Subscription">
+    <apex:column value="{!Subscription.Name}"/>
+    <apex:column value="{!Subscription.subscription_start_date__C}"/>
+    <apex:column value="{!Subscription.Subscription_End_Date__c}"/>
+    <apex:column value="{!Subscription.Subscription_Type__C}"/>
+    <apex:column value="{!Subscription.Subscription_Status__C}"/>
+  
+
+    <apex:column>
+        <apex:commandButton value="view details" action="{!showSubsDetails}" rerender="Subscription_list"> 
+        <apex:param name="SubscriptionId" value="{!Subscription.Id}" assignTo="{!selectedSubsId}"/>
+        </apex:commandButton>
+    </apex:column>
+ 
+
+</apex:pageBlockTable>
+
     </apex:pageBlock>
 
+
 </apex:form>
+   
+
 </apex:page>

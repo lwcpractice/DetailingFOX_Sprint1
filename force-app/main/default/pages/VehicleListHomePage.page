@@ -1,17 +1,21 @@
 <apex:page standardController="Customer_Vehicle_Info__C"  extensions="CutomerVehicleClass" recordSetVar="VehicleInfo" >
 <apex:form>
-    <apex:pageBlock title="Detailing FOX" id="Vehicle_List">
-        <apex:pageBlockSection title="vehicle search">
-                <apex:inputText value="{!searchKeyword}" /><br/>
+    <apex:pageBlock title="DetailingFox Subscription Management System" id="Vehicle_List">
+        
+        <apex:pageBlockSection title="Utilities">
+                <apex:inputText value="{!searchKeyword}" />&nbsp;
                 <apex:commandButton value="Search" action="{!performSearch}" reRender="Vehicle_List" /><br/>
-                <apex:pageBlockTable value="{!VehicleInfoList}" var="Vehicle">
+                    <apex:pageBlockTable value="{!VehicleInfoList}" var="Vehicle">
                     <apex:column  value="{!Vehicle.Name}"/>
                     <apex:column><apex:commandButton value="view details" action="{!showVehicleDetails}" rerender="Vehicle_List"> 
                         <apex:param name="vehicleId" value="{!Vehicle.Id}" assignTo="{!selectedVehicleId}"/>
                 </apex:commandButton></apex:column>
-                    </apex:pageBlockTable>
+                    </apex:pageBlockTable><br/>
+                    <apex:commandButton value="Add New Customer" action="{!showVehicleDetails}" /><br/>
+                    
             </apex:pageBlockSection>
-         
+        </apex:pageBlock>  
+        <apex:pageBlock  id="All_Vehicle_List">
         <apex:pageBlockTable value="{!VehicleInfo}" var="Vehicle">
          <apex:column headerValue="Vehicle Number" ><apex:outputLink value="/apex/VehicleDetail?id={!Vehicle.Id}">{!Vehicle.Name}</apex:outputLink></apex:column>
         
@@ -50,7 +54,7 @@
                 <apex:selectOption itemValue="1" itemLabel="1"/>
                 <apex:selectOption itemValue="5" itemLabel="5"/>
                 <apex:selectOption itemValue="20" itemLabel="20"/>
-                <apex:actionSupport event="onchange" reRender="Vehicle_List"/>
+                <apex:actionSupport event="onchange" reRender="All_Vehicle_List"/>
             </apex:selectList>
         </td>
     </tr></table>
